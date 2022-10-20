@@ -69,8 +69,6 @@ public class ModuleCard extends UiPart<Region> {
             .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
         moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
 
-        moduleDescription.setText(module.getDescription().replace("\n", " "));
-
         // managed controls whether it interrupts the flow i.e. display in CSS vs visibility
         // bind allows for managed to follow the visible property's changes
         expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
@@ -85,7 +83,7 @@ public class ModuleCard extends UiPart<Region> {
     private void showDetailedModuleInformation() {
         expandedModuleInfo.setVisible(true);
 
-        moduleDescription.setText(module.getDescription());
+        moduleDescription.setText(module.getDescription().replace("\n", " "));
         moduleDescription.setWrapText(true);
 
         prerequisite.setText(module.getPrerequisite());
